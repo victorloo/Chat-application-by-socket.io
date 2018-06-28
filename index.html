@@ -21,9 +21,17 @@
     <script src="/socket.io/socket.io.js">
       // That’s all it takes to load the socket.io-client, which exposes a io global, and then connect.
     </script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-      var socket = io();
-      // Notice that I’m not specifying any URL when I call io(), since it defaults to trying to connect to the host that serves the page.
+      $(function() {
+        var socket = io();
+        // Notice that I’m not specifying any URL when I call io(), since it defaults to trying to connect to the host that serves the page.
+        $('form').submit(function(){
+          socket.emit('chat message', $('#m').val());
+          $('#m').val('');
+          return false;
+        })
+      })
     </script>
   </body>
 </html>

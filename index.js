@@ -11,10 +11,10 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
-    console.log('message: ' + msg);
+    io.emit('chat message', msg);
   });
 });
-// Listen on the connection event for incoming sockets, and log it to the console.
+// In this case, for the sake of simplicity we’ll send the message to everyone, including the sender.
 
 http.listen(3000, function(){
   console.log('listening on *:3000');
